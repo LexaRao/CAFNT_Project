@@ -35,7 +35,7 @@ Brief introduction of the project: A common api for network tunneling over long 
       
 Command     | 	Parameters   | 	Description      |	Expected Behavior
 
-===============================================================================================
+===========================================================================================
 power_on	  | none	         | Turn system on    |	Enables device
 
 power_off	  | none	         | Turn system off   |	Disables device
@@ -101,7 +101,7 @@ status	    | none	         | Get system status | Returns full system state
      
      Mode Code |    Remote Button    |  Action
 
-========================================================================================================
+====================================================================================================
 
      0	       | POWER	             | Toggle system power
      
