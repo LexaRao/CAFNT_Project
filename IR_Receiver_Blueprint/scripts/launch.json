@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Serial Daemon",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/serial_daemon.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "externalConsole": false
+    }
+  ]
+}

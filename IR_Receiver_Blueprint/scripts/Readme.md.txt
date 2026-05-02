@@ -1,0 +1,3 @@
+# AI Documentation.
+
+The following is an AI Auto-generated script for integration with the location system.  This will allow the system to control the local network.  More work has to be done for smoother integration of the system.  The code will then be able to work on all the functions required by the project on a local level over the debug bridge.  This helps understand how different systems are programmed and integrated with each other.
