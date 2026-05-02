@@ -32,20 +32,34 @@ Brief introduction of the project: A common api for network tunneling over long 
      POWER=ON;LEVEL=5;COLOR=1;ALERT=true
     - Supported Commands:
 Command     | 	Parameters   | 	Description      |	Expected Behavior
+
 ----------------------------------------------------------------------
 power_on	  | none	         | Turn system on    |	Enables device
+
 power_off	  | none	         | Turn system off   |	Disables device
+
 power_toggle| none	         | Toggle power state|	Switches ON/OFF
+
 set_level	  | 0–9	           | Set power level	 | Updates internal level
+
 get_level	  | none	         | Get power level	 | Returns current level
+
 get_power	  | none	         | Get power state	 | Returns ON/OFF
+
 set_color   | red/blue/green | Set LED color	   | Changes LED output
+
 led_off     |	none           | Turn LED off	     | Disables LED
+
 beep	      | none	         | Play normal beep	 | Buzzer feedback
+
 invalid_beep|	none	         | Play error beep	 | Error feedback
+
 dnd_on	    | none	         | Disable alerts	   | Enable do-not-disturb
+
 dnd_off     | none           | Enable alerts     | Disable do-not-disturb
+
 status	    | none	         | Get system status | Returns full system state
+
 
  3. Arduino Function Mapping (executed on the Arduino when commands are received):
     Command        |   Arduino Function
