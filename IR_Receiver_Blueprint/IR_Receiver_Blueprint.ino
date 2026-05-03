@@ -26,14 +26,32 @@ int currentMode;
 #define Green 5
 #define Red 6
 
+// Create a function for beeping for a period of time without the hardware.
+void immBeep(int Pin, float Frequence, int Time) {
+  // Calculate the period of the beep.
+  const float Period = (1 / Frequence);
+
+  // Using a for loop iterate over each of the times and beep for that required amount of time.
+  for (int i = 0; i < Time * 10; i += 1) {
+    // Write the digital value for the given frequences to high for the binary high.
+    digitalWrite(Beep, HIGH);
+
+    // Delay the process of shutting it down for one period.
+    delay(Period);
+
+    // Write the digital pin out to make sure the frequences is now low for the binary value.
+    digitalWrite(Beep, LOW);
+  }
+}
+
 // When the users does something invalid alert them.
 void CreateInvalidBEEP() {
   // Define needed variables.
-  const unsigned long smallDelay = 50;
+  const unsigned long smallDelay = 500;
 
   // Beep three times to allow the user to understand something has gone wrong.
   // First time.
-  digitalWrite(Beep, HIGH);
+  /* digitalWrite(Beep, HIGH);
   delay(smallDelay);
   digitalWrite(Beep, LOW);
 
@@ -45,7 +63,10 @@ void CreateInvalidBEEP() {
   // Third time.
   digitalWrite(Beep, HIGH);
   delay(smallDelay);
-  digitalWrite(Beep, LOW);
+  digitalWrite(Beep, LOW); */
+
+  // Create the newer code for controling beeping.
+  immBeep(Beep, 85, 3 * smallDelay);
 }
 
 // Define the function required in this program.
@@ -132,9 +153,10 @@ void createBEEP() {
   // If the receiver is powered and at the rigth power level beep.
   if (recPowered && level >= 5) {
     // Make a beep for 4000 ms.  
-    digitalWrite(Beep, HIGH);
+    /* digitalWrite(Beep, HIGH);
     delay(40);
-    digitalWrite(Beep, LOW);
+    digitalWrite(Beep, LOW); */
+    immBeep(Beep, 75, 4000);
 
   } else if (alertUser) {
     CreateInvalidBEEP();
@@ -652,10 +674,8 @@ void setup()   /*----( SETUP: RUNS ONCE )----*/
 
   // Set the LED to red by default.
   writeImmRed();
-  digitalWrite(Beep, HIGH);
-  delay(1000);
+  immBeep(Beep, 85, 1000);
   writeImmOff();
-  digitalWrite(Beep, LOW);
 
   // Beep once to alert the users to the transmitter is up.
   // tone(Beep, 82, 10);
