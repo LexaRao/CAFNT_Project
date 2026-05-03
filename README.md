@@ -1,6 +1,6 @@
 # CS 578 CAFNT_Project
 
-Team member: Lexa Hope, 
+Team member: Lexa Hope, 828505412 
              Heidi Lin, 828595229
              
 Brief introduction of the project: A common api for network tunneling over long distances using IR and networks.
