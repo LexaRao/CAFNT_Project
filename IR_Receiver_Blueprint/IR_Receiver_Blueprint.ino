@@ -29,7 +29,7 @@ int currentMode;
 // When the users does something invalid alert them.
 void CreateInvalidBEEP() {
   // Define needed variables.
-  const unsigned long smallDelay = 500;
+  const unsigned long smallDelay = 50;
 
   // Beep three times to allow the user to understand something has gone wrong.
   // First time.
@@ -132,7 +132,9 @@ void createBEEP() {
   // If the receiver is powered and at the rigth power level beep.
   if (recPowered && level >= 5) {
     // Make a beep for 4000 ms.  
-    tone(Beep, 82, 4000);
+    digitalWrite(Beep, HIGH);
+    delay(40);
+    digitalWrite(Beep, LOW);
 
   } else if (alertUser) {
     CreateInvalidBEEP();
@@ -650,11 +652,13 @@ void setup()   /*----( SETUP: RUNS ONCE )----*/
 
   // Set the LED to red by default.
   writeImmRed();
+  digitalWrite(Beep, HIGH);
   delay(1000);
   writeImmOff();
+  digitalWrite(Beep, LOW);
 
   // Beep once to alert the users to the transmitter is up.
-  tone(Beep, 82, 1000);
+  // tone(Beep, 82, 10);
 }/*--(end setup )---*/
 
 
