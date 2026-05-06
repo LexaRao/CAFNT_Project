@@ -26,6 +26,24 @@ int currentMode;
 #define Green 5
 #define Red 6
 
+// Create a function for beeping for a period of time without the hardware.
+void immBeep(int Pin, float Frequence, int Time) {
+  // Calculate the period of the beep.
+  const float Period = (1 / Frequence);
+
+  // Using a for loop iterate over each of the times and beep for that required amount of time.
+  for (int i = 0; i < Time * 10; i += 1) {
+    // Write the digital value for the given frequences to high for the binary high.
+    digitalWrite(Beep, HIGH);
+
+    // Delay the process of shutting it down for one period.
+    delay(Period);
+
+    // Write the digital pin out to make sure the frequences is now low for the binary value.
+    digitalWrite(Beep, LOW);
+  }
+}
+
 // When the users does something invalid alert them.
 void CreateInvalidBEEP() {
   // Define needed variables.
@@ -33,7 +51,7 @@ void CreateInvalidBEEP() {
 
   // Beep three times to allow the user to understand something has gone wrong.
   // First time.
-  digitalWrite(Beep, HIGH);
+  /* digitalWrite(Beep, HIGH);
   delay(smallDelay);
   digitalWrite(Beep, LOW);
 
@@ -45,7 +63,10 @@ void CreateInvalidBEEP() {
   // Third time.
   digitalWrite(Beep, HIGH);
   delay(smallDelay);
-  digitalWrite(Beep, LOW);
+  digitalWrite(Beep, LOW); */
+
+  // Create the newer code for controling beeping.
+  immBeep(Beep, 85, 3 * smallDelay);
 }
 
 // Define the function required in this program.
@@ -132,7 +153,10 @@ void createBEEP() {
   // If the receiver is powered and at the rigth power level beep.
   if (recPowered && level >= 5) {
     // Make a beep for 4000 ms.  
-    tone(Beep, 82, 4000);
+    /* digitalWrite(Beep, HIGH);
+    delay(40);
+    digitalWrite(Beep, LOW); */
+    immBeep(Beep, 75, 4000);
 
   } else if (alertUser) {
     CreateInvalidBEEP();
@@ -195,6 +219,7 @@ int getSwitch() {
   return currentMode;
 }
 
+// Connection management.
 // Declare a function for being able to parse each of the cases in order.
 void pushSwitch(int modeCode) {
   // Parse and act for each mode.
@@ -443,6 +468,16 @@ void pushSwitch(int modeCode) {
   }
 }
 
+// Required functionality of the API interface for commicated between different devices.
+// Core functionality.
+/* Network Configuration */
+
+/* Devices & Network Infomation */
+// Define the amount of supported connection to the board.
+int supportedConnection() {
+  return 1; // Right now the board only supports one connection to the board at a time.
+}
+
 /*-----( Declare objects )-----*/
 IRrecv irrecv(receiver);     // create instance of 'irrecv'
 //vairable uses to store the last decodedRawData
@@ -462,6 +497,8 @@ void translateIR() // takes action based on IR code received
     Serial.print("IR code:0x");
     Serial.println(irrecv.decodedIRData.decodedRawData, HEX);
   }
+
+  // Date transmission.
   //map the IR code to the remote key
   switch (irrecv.decodedIRData.decodedRawData)
   {
@@ -637,11 +674,11 @@ void setup()   /*----( SETUP: RUNS ONCE )----*/
 
   // Set the LED to red by default.
   writeImmRed();
-  delay(1000);
+  immBeep(Beep, 85, 1000);
   writeImmOff();
 
   // Beep once to alert the users to the transmitter is up.
-  tone(Beep, 82, 1000);
+  // tone(Beep, 82, 10);
 }/*--(end setup )---*/
 
 

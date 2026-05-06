@@ -12,6 +12,9 @@
 
 // Define static variables for interacting with the systems components.
 const string resourcesLoc = "Resources/";
+int receiverSetting = 0;
+bool poweredOn = false;
+bool curColor = 0;
 
 static HANDLE openSerialPort(const std::wstring& portName)
 {
@@ -90,9 +93,104 @@ static bool receiveSerial(HANDLE port, std::string& output)
 
 // Author: Lexa Hope.
 // Note: Exit the commandline using the following requirements of the program.  Clean exit.  
-static std::vector><std::string> exitCommand(const std::string& input) {
+static std::vector<std::string> exitCommand(const std::string& input) {
     // Successful exit when command is received.
     exit(0);
+}
+
+// Author: Lexa Hope.
+// Note: Account for repeated commands.
+static std::vector<std::string> repeatCommand(const std::string& input) {
+    // Account for repeated commands.
+    cout << "This command is a repeat of prior commands.\n";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> zeroPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to zero.
+    powerLevel = 0;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> onePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to one.
+    powerLevel = 1;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> twoPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to two.
+    powerLevel = 2;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> threePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to three.
+    powerLevel = 3;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> fourPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to four.
+    powerLevel = 4;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> fivePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to five.
+    powerLevel = 5;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> sixPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to six.
+    powerLevel = 6;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> sevenPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to seven.
+    powerLevel = 7;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> eightPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to eight.
+    powerLevel = 8;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::vector<std::string> ninePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to nine.
+    powerLevel = 9;
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing state of receiver which will be used in the diagram.
+static std::vector<std::string> changeStateCommand(const std::string& input) {
+    // Create users input that can be picked up by another program which will use the data to change it state.
+    Type("P");
+}
+
+// Author: Lexa Hope.
+// Note: Command for powering on receiver.
+static std::vector<std::string> powerCommand(const std::string& input) {
+    // Change power settings.
+    if (!poweredOn) {
+        poweredOn = true;
+    } else {
+        poweredOn = false;
+    }
 }
 
 static std::vector<std::string> splitCommand(const std::string& input)
@@ -183,9 +281,31 @@ int main()
     commands["led_on"] = commandLedOn;
     commands["led_off"] = commandLedOff;
 
-    // Define commands for backwards compatiblity with the prototype.
+    // Define commands for compatiblity with the CAFNT project. (Author: Lexa Hope)
+    // Comands for help.
     commands["ST/REPT"] = commandHelp;
     commands["FUNC/STOP"] = commandExit;
+
+    // Commands for repeating commands.
+    commands["REPEAT!"] = repeatCommand;
+
+    // Commands for adjusting the power levels.
+    commands["0"] = zeroPowerLevelCommand;
+    commands["1"] = onePowerLevelCommand;
+    commands["2"] = twoPowerLevelCommand;
+    commands["3"] = threePowerLevelCommand;
+    commands["4"] = fourPowerLevelCommand;
+    commands["5"] = fivePowerLevelCommand;
+    commands["6"] = sixPowerLevelCommand;
+    commands["7"] = sevenPowerLevelCommand;
+    commands["8"] = eightPowerLevelCommand;
+    commands["9"] = ninePowerLevelCommand;
+
+    // Commands for powering on receiver from standby mode.
+    commands["POWER"];
+
+    // Commands for changing the state of the receiver.
+
     
     commands["exit"] = [](const std::vector<std::string>& args) { return std::string("exit"); };
 
