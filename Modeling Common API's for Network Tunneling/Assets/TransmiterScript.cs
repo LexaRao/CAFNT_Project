@@ -1,9 +1,11 @@
 using UnityEngine;
+using GameObject;
 
 public class TransmiterScript : MonoBehaviour
 {
     // Define the reciever for this program.
     public GameObject transmissionReceiver;
+    public GameObject recievePhysicalRepresentation;
     int powerlevels = 0;
     bool signelPresent = false;
 
@@ -11,10 +13,12 @@ public class TransmiterScript : MonoBehaviour
     void Start()
     {
         // Gather the game objects of both the transmittor and reciever.
-
+        GameObject recievePos = transmissionReceiver.GetObject<GameObject>();
+        GameObject transmissionPos = recievePhysicalRepresentation.GetObject<GameObject>();
 
         // Initialize both the transmittor and the reciever to off.
-
+        recievePos.color = "Red";
+        transmissionPos.color = "Red";
     }
 
     // Update is called once per frame
