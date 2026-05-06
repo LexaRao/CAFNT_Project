@@ -121,6 +121,7 @@ static std::string commandEcho(const std::vector<std::string>& args)
     return result;
 }
 
+// Add new commands to the system for processing.
 static std::string commandAdd(const std::vector<std::string>& args)
 {
     if (args.size() != 3) {
