@@ -10,6 +10,9 @@
 #include <functional>
 #include <algorithm>
 
+// Define static variables for interacting with the systems components.
+const string resourcesLoc = "Resources/";
+
 static HANDLE openSerialPort(const std::wstring& portName)
 {
     HANDLE handle = CreateFileW(portName.c_str(), GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
@@ -85,6 +88,13 @@ static bool receiveSerial(HANDLE port, std::string& output)
     return !output.empty();
 }
 
+// Author: Lexa Hope.
+// Note: Exit the commandline using the following requirements of the program.  Clean exit.  
+static std::vector><std::string> exitCommand(const std::string& input) {
+    // Successful exit when command is received.
+    exit(0);
+}
+
 static std::vector<std::string> splitCommand(const std::string& input)
 {
     std::vector<std::string> parts;
@@ -98,7 +108,7 @@ static std::vector<std::string> splitCommand(const std::string& input)
 
 static std::string commandHelp(const std::vector<std::string>& args)
 {
-    return "Available commands: help, ping, echo <text>, add <a> <b>, led_on, led_off, exit";
+    return "Available commands: help (ST/REPT), ping, echo <text>, add <a> <b>, led_on, led_off, exit (FUNC/STOP)";
 }
 
 static std::string commandPing(const std::vector<std::string>& args)
@@ -121,6 +131,7 @@ static std::string commandEcho(const std::vector<std::string>& args)
     return result;
 }
 
+// Add commands to the system using a preconfigured json folder.
 static std::string commandAdd(const std::vector<std::string>& args)
 {
     if (args.size() != 3) {
@@ -168,8 +179,14 @@ int main()
     commands["ping"] = commandPing;
     commands["echo"] = commandEcho;
     commands["add"] = commandAdd;
+    commands["list"] = commandList;
     commands["led_on"] = commandLedOn;
     commands["led_off"] = commandLedOff;
+
+    // Define commands for backwards compatiblity with the prototype.
+    commands["ST/REPT"] = commandHelp;
+    commands["FUNC/STOP"] = commandExit;
+    
     commands["exit"] = [](const std::vector<std::string>& args) { return std::string("exit"); };
 
     std::string input;
@@ -210,6 +227,7 @@ int main()
             std::cout << response << "\n";
         }
 
+        // Break the loop if the command is exit.
         if (command == "exit") {
             break;
         }
