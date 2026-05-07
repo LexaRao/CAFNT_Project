@@ -32,13 +32,10 @@ Library\Bee\artifacts\mvdfrm\Unity.Rendering.LightTransport.Editor.ref.dll_9663C
 Library\Bee\artifacts\mvdfrm\Unity.Rider.Editor.ref.dll_07D7D7B7487B1198.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Searcher.Editor.ref.dll_131E0B0FB16513F5.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.ShaderGraph.Editor.ref.dll_319B33408212A519.mvfrm
-Library\Bee\artifacts\mvdfrm\Unity.Sysroot.Linux_x86_64.ref.dll_7C97561AB18550E8.mvfrm
-Library\Bee\artifacts\mvdfrm\Unity.SysrootPackage.Editor.ref.dll_7F52116FDCDA5E93.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TextMeshPro.Editor.ref.dll_37E92434B2D8A6CF.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.TextMeshPro.ref.dll_A4B478B3CE6E8702.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.Editor.ref.dll_0DA365A2C678CBF9.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.ref.dll_733236CB90539738.mvfrm
-Library\Bee\artifacts\mvdfrm\Unity.Toolchain.Macos-x86_64-Linux.ref.dll_B8B39A9FAA4A7DA4.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.UnifiedRayTracing.Runtime.ref.dll_BD7C890244318A53.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.Editor.ref.dll_065CC54F8DD2A924.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.ref.dll_2F2D99604E6B235D.mvfrm
@@ -186,3 +183,5 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.VirtualTexturingModule.dll_0315B423491E
 Library\Bee\artifacts\mvdfrm\UnityEngine.VRModule.dll_DEFED24E36DFDD58.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.WindModule.dll_CF1BE28A9A91A974.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.XRModule.dll_11BD9552C01A2AB6.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Collections.LowLevel.ILSupport.dll_921D3F57B2557A8B.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_09E3B58BCA4FB048.mvfrm
