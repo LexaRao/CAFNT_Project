@@ -97,7 +97,7 @@ static bool receiveSerial(HANDLE port, std::string& output)
 
 // Author: Lexa Hope.
 // Note: Exit the commandline using the following requirements of the program.  Clean exit.  
-static std::string exitCommand(const std::string& input) {
+static std::string exitCommand(const std::vector<std::string>& args) {
     // Successful exit when command is received.
     exit(0);
     return "Exiting...";
@@ -105,7 +105,7 @@ static std::string exitCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Account for repeated commands.
-static std::string repeatCommand(const std::string& input) {
+static std::string repeatCommand(const std::vector<std::string>& args) {
     // Account for repeated commands.
     std::cout << "This command is a repeat of prior commands.\n";
     return "Repeat acknowledged";
@@ -113,7 +113,7 @@ static std::string repeatCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string zeroPowerLevelCommand(const std::string& input) {
+static std::string zeroPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to zero.
     powerLevel = 0;
     std::cout << "Power level set to 0.\n";
@@ -122,7 +122,7 @@ static std::string zeroPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string onePowerLevelCommand(const std::string& input) {
+static std::string onePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to one.
     powerLevel = 1;
     std::cout << "Power level set to 1.\n";
@@ -131,7 +131,7 @@ static std::string onePowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string twoPowerLevelCommand(const std::string& input) {
+static std::string twoPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to two.
     powerLevel = 2;
     std::cout << "Power level set to 2.\n";
@@ -140,7 +140,7 @@ static std::string twoPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string threePowerLevelCommand(const std::string& input) {
+static std::string threePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to three.
     powerLevel = 3;
     std::cout << "Power level set to 3.\n";
@@ -149,7 +149,7 @@ static std::string threePowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string fourPowerLevelCommand(const std::string& input) {
+static std::string fourPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to four.
     powerLevel = 4;
     std::cout << "Power level set to 4.\n";
@@ -158,7 +158,7 @@ static std::string fourPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string fivePowerLevelCommand(const std::string& input) {
+static std::string fivePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to five.
     powerLevel = 5;
     std::cout << "Power level set to 5.\n";
@@ -167,7 +167,7 @@ static std::string fivePowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string sixPowerLevelCommand(const std::string& input) {
+static std::string sixPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to six.
     powerLevel = 6;
     std::cout << "Power level set to 6.\n";
@@ -176,7 +176,7 @@ static std::string sixPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string sevenPowerLevelCommand(const std::string& input) {
+static std::string sevenPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to seven.
     powerLevel = 7;
     std::cout << "Power level set to 7.\n";
@@ -185,7 +185,7 @@ static std::string sevenPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string eightPowerLevelCommand(const std::string& input) {
+static std::string eightPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to eight.
     powerLevel = 8;
     std::cout << "Power level set to 8.\n";
@@ -194,7 +194,7 @@ static std::string eightPowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing the power level.
-static std::string ninePowerLevelCommand(const std::string& input) {
+static std::string ninePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to nine.
     powerLevel = 9;
     std::cout << "Power level set to 9.\n";
@@ -203,7 +203,7 @@ static std::string ninePowerLevelCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for changing state of receiver which will be used in the diagram.
-static std::string changeStateCommand(const std::string& input) {
+static std::string changeStateCommand(const std::vector<std::string>& args) {
     // If the code is in the correct state, change the state of the receiver.
     if (poweredOn && powerLevel >= 5) {  
         // Output for file has a change to it.
@@ -232,7 +232,7 @@ static std::string changeStateCommand(const std::string& input) {
 
 // Author: Lexa Hope.
 // Note: Command for powering on receiver.
-static std::string powerCommand(const std::string& input) {
+static std::string powerCommand(const std::vector<std::string>& args) {
     // Change power settings.
     if (!poweredOn) {
         poweredOn = true;
