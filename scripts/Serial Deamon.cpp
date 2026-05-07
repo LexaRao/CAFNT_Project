@@ -116,6 +116,7 @@ static std::string repeatCommand(const std::string& input) {
 static std::string zeroPowerLevelCommand(const std::string& input) {
     // Change the power level internally to zero.
     powerLevel = 0;
+    std::cout << "Power level set to 0.\n";
     return "Power level set to 0";
 }
 
@@ -124,6 +125,7 @@ static std::string zeroPowerLevelCommand(const std::string& input) {
 static std::string onePowerLevelCommand(const std::string& input) {
     // Change the power level internally to one.
     powerLevel = 1;
+    std::cout << "Power level set to 1.\n";
     return "Power level set to 1";
 }
 
@@ -132,6 +134,7 @@ static std::string onePowerLevelCommand(const std::string& input) {
 static std::string twoPowerLevelCommand(const std::string& input) {
     // Change the power level internally to two.
     powerLevel = 2;
+    std::cout << "Power level set to 2.\n";
     return "Power level set to 2";
 }
 
@@ -140,6 +143,7 @@ static std::string twoPowerLevelCommand(const std::string& input) {
 static std::string threePowerLevelCommand(const std::string& input) {
     // Change the power level internally to three.
     powerLevel = 3;
+    std::cout << "Power level set to 3.\n";
     return "Power level set to 3";
 }
 
@@ -148,6 +152,7 @@ static std::string threePowerLevelCommand(const std::string& input) {
 static std::string fourPowerLevelCommand(const std::string& input) {
     // Change the power level internally to four.
     powerLevel = 4;
+    std::cout << "Power level set to 4.\n";
     return "Power level set to 4";
 }
 
@@ -156,6 +161,7 @@ static std::string fourPowerLevelCommand(const std::string& input) {
 static std::string fivePowerLevelCommand(const std::string& input) {
     // Change the power level internally to five.
     powerLevel = 5;
+    std::cout << "Power level set to 5.\n";
     return "Power level set to 5";
 }
 
@@ -164,6 +170,7 @@ static std::string fivePowerLevelCommand(const std::string& input) {
 static std::string sixPowerLevelCommand(const std::string& input) {
     // Change the power level internally to six.
     powerLevel = 6;
+    std::cout << "Power level set to 6.\n";
     return "Power level set to 6";
 }
 
@@ -172,6 +179,7 @@ static std::string sixPowerLevelCommand(const std::string& input) {
 static std::string sevenPowerLevelCommand(const std::string& input) {
     // Change the power level internally to seven.
     powerLevel = 7;
+    std::cout << "Power level set to 7.\n";
     return "Power level set to 7";
 }
 
@@ -180,6 +188,7 @@ static std::string sevenPowerLevelCommand(const std::string& input) {
 static std::string eightPowerLevelCommand(const std::string& input) {
     // Change the power level internally to eight.
     powerLevel = 8;
+    std::cout << "Power level set to 8.\n";
     return "Power level set to 8";
 }
 
@@ -188,6 +197,7 @@ static std::string eightPowerLevelCommand(const std::string& input) {
 static std::string ninePowerLevelCommand(const std::string& input) {
     // Change the power level internally to nine.
     powerLevel = 9;
+    std::cout << "Power level set to 9.\n";
     return "Power level set to 9";
 }
 
@@ -213,6 +223,7 @@ static std::string changeStateCommand(const std::string& input) {
         } else { // Write the state change output to the file.
             file << stateChangeOutput;
             file.close();
+            std::cout << "State changed and written to file.\n";
             return "State changed";
         }
     }
@@ -225,9 +236,11 @@ static std::string powerCommand(const std::string& input) {
     // Change power settings.
     if (!poweredOn) {
         poweredOn = true;
+        std::cout << "Receiver powered on.\n";
         return "Powered on";
     } else {
         poweredOn = false;
+        std::cout << "Receiver powered off.\n";
         return "Powered off";
     }
 }
