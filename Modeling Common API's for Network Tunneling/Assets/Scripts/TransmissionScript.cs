@@ -6,7 +6,7 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
 {
     public GameObject transmissionReceiver; // Reference to the receiver GameObject
     public GameObject receivePhysicalRepresentation; // Reference to the transmitter GameObject
-    public string filePath = "Files/keyTracker.txt.ink"; // Relative file path under Assets
+    public string filePath = "../../../Resources/keyTracker.text"; // Relative file path under Assets
 
     private int powerLevels = 0; // Tracks the current power level
     private bool signalPresent = false; // Indicates whether a signal was detected
@@ -57,12 +57,15 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
         if (signalPresent && !isProcessing) // Start transmission only when a signal is present and not already processing
         {
             StartCoroutine(ProcessTransmission()); // Begin the transmission coroutine
+        } else // Read the digital signal from the data base.
+        {
+            ReadSignalFromFile(); // Continuously check for signal updates each frame
         }
     }
 
     private void ReadSignalFromFile() // Reads the external signal file and updates state
     {
-        string fullPath = Path.GetFullPath(Application.dataPath, filePath); // Build absolute path to the file
+        string fullPath = Application.dataPath + "/" + filePath; // Build absolute path to the file
         if (!File.Exists(fullPath)) // Check file existence before reading
         {
             Debug.LogWarning($"Signal file not found: {fullPath}"); // Warn if missing
@@ -102,10 +105,10 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
         SetObjectColor(transmitterRenderer, Color.red); // Ensure transmitter ends red
         SetObjectColor(receiverRenderer, Color.red); // Ensure receiver ends red
 
-        string fullPath = Path.GetFullPath(Application.dataPath, filePath); // Resolve full file path again for writing
+        string fullPath = Application.dataPath + "/" + filePath; // Resolve full file path again for writing
         try
         {
-            File.WriteAllText(fullPath, "Key=Notpressed"); // Overwrite the file to clear the signal
+            File.WriteAllText(fullPath, "Notpressed"); // Overwrite the file to clear the signal
         }
         catch (IOException e) // Handle I/O failures gracefully
         {
