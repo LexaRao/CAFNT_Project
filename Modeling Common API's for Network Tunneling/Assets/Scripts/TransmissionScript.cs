@@ -62,7 +62,7 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
 
     private void ReadSignalFromFile() // Reads the external signal file and updates state
     {
-        string fullPath = Path.Combine(Application.dataPath, filePath); // Build absolute path to the file
+        string fullPath = Path.GetFullPath(Application.dataPath, filePath); // Build absolute path to the file
         if (!File.Exists(fullPath)) // Check file existence before reading
         {
             Debug.LogWarning($"Signal file not found: {fullPath}"); // Warn if missing
@@ -102,7 +102,7 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
         SetObjectColor(transmitterRenderer, Color.red); // Ensure transmitter ends red
         SetObjectColor(receiverRenderer, Color.red); // Ensure receiver ends red
 
-        string fullPath = Path.Combine(Application.dataPath, filePath); // Resolve full file path again for writing
+        string fullPath = Path.GetFullPath(Application.dataPath, filePath); // Resolve full file path again for writing
         try
         {
             File.WriteAllText(fullPath, "Key=Notpressed"); // Overwrite the file to clear the signal
