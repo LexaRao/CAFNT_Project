@@ -9,6 +9,16 @@
 #include <unordered_map>
 #include <functional>
 #include <algorithm>
+#include <filesystem>
+#include <fstream>
+#include <filesystem>
+
+// Define static variables for interacting with the systems components.
+const std::string resourcesLoc = "Resources/";
+int receiverSetting = 0;
+bool poweredOn = false;
+bool curColor = 0;
+int powerLevel = 0;
 
 static HANDLE openSerialPort(const std::wstring& portName)
 {
@@ -85,6 +95,156 @@ static bool receiveSerial(HANDLE port, std::string& output)
     return !output.empty();
 }
 
+// Author: Lexa Hope.
+// Note: Exit the commandline using the following requirements of the program.  Clean exit.  
+static std::string exitCommand(const std::string& input) {
+    // Successful exit when command is received.
+    exit(0);
+    return "Exiting...";
+}
+
+// Author: Lexa Hope.
+// Note: Account for repeated commands.
+static std::string repeatCommand(const std::string& input) {
+    // Account for repeated commands.
+    std::cout << "This command is a repeat of prior commands.\n";
+    return "Repeat acknowledged";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string zeroPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to zero.
+    powerLevel = 0;
+    std::cout << "Power level set to 0.\n";
+    return "Power level set to 0";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string onePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to one.
+    powerLevel = 1;
+    std::cout << "Power level set to 1.\n";
+    return "Power level set to 1";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string twoPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to two.
+    powerLevel = 2;
+    std::cout << "Power level set to 2.\n";
+    return "Power level set to 2";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string threePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to three.
+    powerLevel = 3;
+    std::cout << "Power level set to 3.\n";
+    return "Power level set to 3";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string fourPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to four.
+    powerLevel = 4;
+    std::cout << "Power level set to 4.\n";
+    return "Power level set to 4";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string fivePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to five.
+    powerLevel = 5;
+    std::cout << "Power level set to 5.\n";
+    return "Power level set to 5";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string sixPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to six.
+    powerLevel = 6;
+    std::cout << "Power level set to 6.\n";
+    return "Power level set to 6";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string sevenPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to seven.
+    powerLevel = 7;
+    std::cout << "Power level set to 7.\n";
+    return "Power level set to 7";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string eightPowerLevelCommand(const std::string& input) {
+    // Change the power level internally to eight.
+    powerLevel = 8;
+    std::cout << "Power level set to 8.\n";
+    return "Power level set to 8";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing the power level.
+static std::string ninePowerLevelCommand(const std::string& input) {
+    // Change the power level internally to nine.
+    powerLevel = 9;
+    std::cout << "Power level set to 9.\n";
+    return "Power level set to 9";
+}
+
+// Author: Lexa Hope.
+// Note: Command for changing state of receiver which will be used in the diagram.
+static std::string changeStateCommand(const std::string& input) {
+    // If the code is in the correct state, change the state of the receiver.
+    if (poweredOn && powerLevel >= 5) {  
+        // Output for file has a change to it.
+        const std::string stateChangeOutput = "Pressed";
+
+        // Create file name.
+        std::filesystem::path stateFile = resourcesLoc + "keyTracker.text";
+
+        // Create users input that can be picked up by another program which will use the data to change it state.
+        std::ofstream file;
+        file.open(stateFile.string(), std::ios::out);
+
+        // Check if file is open.
+        if (!file.is_open()) {
+            std::cout << "Error opening file for writing: " << stateFile.string() << "\n";
+            return "Error opening file";
+        } else { // Write the state change output to the file.
+            file << stateChangeOutput;
+            file.close();
+            std::cout << "State changed and written to file.\n";
+            return "State changed";
+        }
+    }
+    return "Conditions not met for state change";
+}
+
+// Author: Lexa Hope.
+// Note: Command for powering on receiver.
+static std::string powerCommand(const std::string& input) {
+    // Change power settings.
+    if (!poweredOn) {
+        poweredOn = true;
+        std::cout << "Receiver powered on.\n";
+        return "Powered on";
+    } else {
+        poweredOn = false;
+        std::cout << "Receiver powered off.\n";
+        return "Powered off";
+    }
+}
+
 static std::vector<std::string> splitCommand(const std::string& input)
 {
     std::vector<std::string> parts;
@@ -98,7 +258,7 @@ static std::vector<std::string> splitCommand(const std::string& input)
 
 static std::string commandHelp(const std::vector<std::string>& args)
 {
-    return "Available commands: help, ping, echo <text>, add <a> <b>, led_on, led_off, exit";
+    return "Available commands: help (ST/REPT), ping, echo <text>, add <a> <b>, led_on, led_off, exit (FUNC/STOP)";
 }
 
 static std::string commandPing(const std::vector<std::string>& args)
@@ -121,7 +281,7 @@ static std::string commandEcho(const std::vector<std::string>& args)
     return result;
 }
 
-// Add new commands to the system for processing.
+// Add commands to the system using a preconfigured json folder.
 static std::string commandAdd(const std::vector<std::string>& args)
 {
     if (args.size() != 3) {
@@ -171,6 +331,40 @@ int main()
     commands["add"] = commandAdd;
     commands["led_on"] = commandLedOn;
     commands["led_off"] = commandLedOff;
+
+    // Define commands for compatiblity with the CAFNT project. (Author: Lexa Hope)
+    // Comands for help.
+    commands["ST/REPT"] = commandHelp;
+    commands["FUNC/STOP"] = exitCommand;
+
+    // Commands for repeating commands.
+    commands["REPEAT!"] = repeatCommand;
+
+    // Commands for adjusting the power levels.
+    commands["0"] = zeroPowerLevelCommand;
+    commands["1"] = onePowerLevelCommand;
+    commands["2"] = twoPowerLevelCommand;
+    commands["3"] = threePowerLevelCommand;
+    commands["4"] = fourPowerLevelCommand;
+    commands["5"] = fivePowerLevelCommand;
+    commands["6"] = sixPowerLevelCommand;
+    commands["7"] = sevenPowerLevelCommand;
+    commands["8"] = eightPowerLevelCommand;
+    commands["9"] = ninePowerLevelCommand;
+
+    // Commands for powering on receiver from standby mode.
+    commands["POWER"] = powerCommand;
+
+    // Commands for changing the state of the receiver.
+    commands["Vol+"] = changeStateCommand;
+    commands["Vol-"] = changeStateCommand;
+    commands["FAST BACK"] = changeStateCommand;
+    commands["FAST FORWARD"] = changeStateCommand;
+    commands["PAUSE"] = changeStateCommand;
+    commands["DOWN"] = changeStateCommand;
+    commands["UP"] = changeStateCommand;
+    commands["EQ"] = changeStateCommand;
+    
     commands["exit"] = [](const std::vector<std::string>& args) { return std::string("exit"); };
 
     std::string input;
@@ -211,6 +405,7 @@ int main()
             std::cout << response << "\n";
         }
 
+        // Break the loop if the command is exit.
         if (command == "exit") {
             break;
         }
