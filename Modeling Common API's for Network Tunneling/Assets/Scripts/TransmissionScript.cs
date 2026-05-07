@@ -105,7 +105,7 @@ public class TransmissionScript : MonoBehaviour // Class name matches file name 
         string fullPath = Path.Combine(Application.dataPath, filePath); // Resolve full file path again for writing
         try
         {
-            File.WriteAllText(fullPath, "Notpressed"); // Overwrite the file to clear the signal
+            File.WriteAllText(fullPath, "Key=Notpressed"); // Overwrite the file to clear the signal
         }
         catch (IOException e) // Handle I/O failures gracefully
         {

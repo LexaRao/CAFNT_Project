@@ -207,7 +207,7 @@ static std::string changeStateCommand(const std::vector<std::string>& args) {
     // If the code is in the correct state, change the state of the receiver.
     if (poweredOn && powerLevel >= 5) {  
         // Output for file has a change to it.
-        const std::string stateChangeOutput = "Pressed";
+        const std::string stateChangeOutput = "Key=Pressed";
 
         // Create file name.
         std::filesystem::path stateFile = resourcesLoc + "keyTracker.text";
