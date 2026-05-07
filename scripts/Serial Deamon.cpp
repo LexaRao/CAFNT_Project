@@ -107,7 +107,7 @@ static std::string exitCommand(const std::vector<std::string>& args) {
 // Note: Account for repeated commands.
 static std::string repeatCommand(const std::vector<std::string>& args) {
     // Account for repeated commands.
-    std::cout << "This command is a repeat of prior commands.\n";
+    // std::cout << "This command is a repeat of prior commands.\n";
     return "Repeat acknowledged";
 }
 
@@ -116,7 +116,7 @@ static std::string repeatCommand(const std::vector<std::string>& args) {
 static std::string zeroPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to zero.
     powerLevel = 0;
-    std::cout << "Power level set to 0.\n";
+    // std::cout << "Power level set to 0.\n";
     return "Power level set to 0";
 }
 
@@ -125,7 +125,7 @@ static std::string zeroPowerLevelCommand(const std::vector<std::string>& args) {
 static std::string onePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to one.
     powerLevel = 1;
-    std::cout << "Power level set to 1.\n";
+    // std::cout << "Power level set to 1.\n";
     return "Power level set to 1";
 }
 
@@ -134,7 +134,7 @@ static std::string onePowerLevelCommand(const std::vector<std::string>& args) {
 static std::string twoPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to two.
     powerLevel = 2;
-    std::cout << "Power level set to 2.\n";
+    // std::cout << "Power level set to 2.\n";
     return "Power level set to 2";
 }
 
@@ -143,7 +143,7 @@ static std::string twoPowerLevelCommand(const std::vector<std::string>& args) {
 static std::string threePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to three.
     powerLevel = 3;
-    std::cout << "Power level set to 3.\n";
+    // std::cout << "Power level set to 3.\n";
     return "Power level set to 3";
 }
 
@@ -152,7 +152,7 @@ static std::string threePowerLevelCommand(const std::vector<std::string>& args) 
 static std::string fourPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to four.
     powerLevel = 4;
-    std::cout << "Power level set to 4.\n";
+    // std::cout << "Power level set to 4.\n";
     return "Power level set to 4";
 }
 
@@ -161,7 +161,7 @@ static std::string fourPowerLevelCommand(const std::vector<std::string>& args) {
 static std::string fivePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to five.
     powerLevel = 5;
-    std::cout << "Power level set to 5.\n";
+    // std::cout << "Power level set to 5.\n";
     return "Power level set to 5";
 }
 
@@ -170,7 +170,7 @@ static std::string fivePowerLevelCommand(const std::vector<std::string>& args) {
 static std::string sixPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to six.
     powerLevel = 6;
-    std::cout << "Power level set to 6.\n";
+    // std::cout << "Power level set to 6.\n";
     return "Power level set to 6";
 }
 
@@ -179,7 +179,7 @@ static std::string sixPowerLevelCommand(const std::vector<std::string>& args) {
 static std::string sevenPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to seven.
     powerLevel = 7;
-    std::cout << "Power level set to 7.\n";
+    // std::cout << "Power level set to 7.\n";
     return "Power level set to 7";
 }
 
@@ -188,7 +188,7 @@ static std::string sevenPowerLevelCommand(const std::vector<std::string>& args) 
 static std::string eightPowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to eight.
     powerLevel = 8;
-    std::cout << "Power level set to 8.\n";
+    // std::cout << "Power level set to 8.\n";
     return "Power level set to 8";
 }
 
@@ -197,7 +197,7 @@ static std::string eightPowerLevelCommand(const std::vector<std::string>& args) 
 static std::string ninePowerLevelCommand(const std::vector<std::string>& args) {
     // Change the power level internally to nine.
     powerLevel = 9;
-    std::cout << "Power level set to 9.\n";
+    // std::cout << "Power level set to 9.\n";
     return "Power level set to 9";
 }
 
@@ -218,12 +218,12 @@ static std::string changeStateCommand(const std::vector<std::string>& args) {
 
         // Check if file is open.
         if (!file.is_open()) {
-            std::cout << "Error opening file for writing: " << stateFile.string() << "\n";
+            // std::cout << "Error opening file for writing: " << stateFile.string() << "\n";
             return "Error opening file";
         } else { // Write the state change output to the file.
             file << stateChangeOutput;
             file.close();
-            std::cout << "State changed and written to file.\n";
+            // std::cout << "State changed and written to file.\n";
             return "State changed";
         }
     }
@@ -236,11 +236,11 @@ static std::string powerCommand(const std::vector<std::string>& args) {
     // Change power settings.
     if (!poweredOn) {
         poweredOn = true;
-        std::cout << "Receiver powered on.\n";
+        // std::cout << "Receiver powered on.\n";
         return "Powered on";
     } else {
         poweredOn = false;
-        std::cout << "Receiver powered off.\n";
+        // std::cout << "Receiver powered off.\n";
         return "Powered off";
     }
 }
@@ -334,11 +334,11 @@ int main()
 
     // Define commands for compatiblity with the CAFNT project. (Author: Lexa Hope)
     // Comands for help.
-    commands["ST/REPT"] = commandHelp;
-    commands["FUNC/STOP"] = exitCommand;
+    commands["st/rept"] = commandHelp;
+    commands["func/stop"] = exitCommand;
 
     // Commands for repeating commands.
-    commands["REPEAT!"] = repeatCommand;
+    commands["repeat!"] = repeatCommand;
 
     // Commands for adjusting the power levels.
     commands["0"] = zeroPowerLevelCommand;
@@ -353,17 +353,17 @@ int main()
     commands["9"] = ninePowerLevelCommand;
 
     // Commands for powering on receiver from standby mode.
-    commands["POWER"] = powerCommand;
+    commands["power"] = powerCommand;
 
     // Commands for changing the state of the receiver.
-    commands["Vol+"] = changeStateCommand;
-    commands["Vol-"] = changeStateCommand;
-    commands["FAST BACK"] = changeStateCommand;
-    commands["FAST FORWARD"] = changeStateCommand;
-    commands["PAUSE"] = changeStateCommand;
-    commands["DOWN"] = changeStateCommand;
-    commands["UP"] = changeStateCommand;
-    commands["EQ"] = changeStateCommand;
+    commands["vol+"] = changeStateCommand;
+    commands["vol-"] = changeStateCommand;
+    commands["fast back"] = changeStateCommand;
+    commands["fast forward"] = changeStateCommand;
+    commands["pause"] = changeStateCommand;
+    commands["down"] = changeStateCommand;
+    commands["up"] = changeStateCommand;
+    commands["eq"] = changeStateCommand;
     
     commands["exit"] = [](const std::vector<std::string>& args) { return std::string("exit"); };
 

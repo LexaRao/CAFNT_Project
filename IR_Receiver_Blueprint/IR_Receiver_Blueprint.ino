@@ -226,7 +226,7 @@ void pushSwitch(int modeCode) {
   // Create the function for when the power button is hit.
   if (modeCode == 0) {
     // Indicate to the user what is happening.
-    Serial.println("POWER");
+    Serial.println("power");
 
     // Press the power button when this is happening.
     if (recIsPowered() == true) {
@@ -240,7 +240,7 @@ void pushSwitch(int modeCode) {
   // Create the function for when the stop function is hit.
   } else if (modeCode == 1) { 
     // Print the output of the function to the user.
-    Serial.println("FUNC/STOP"); 
+    Serial.println("func/stop"); 
 
     // Create a beep for user interaction.
     createBEEP();
@@ -251,7 +251,7 @@ void pushSwitch(int modeCode) {
   // Create command for turning up volume.
   } else if (modeCode == 2) {
     // Create the volume up command for change the strength of the transmitter.
-    Serial.println("VOL+");
+    Serial.println("vol+");
 
     // Get the current strength of the transmitter.
     int powerLevel = moniterPowerLevel();
@@ -268,7 +268,7 @@ void pushSwitch(int modeCode) {
   // Create a function for change the light color to red.  
   } else if (modeCode == 3) {
     // Write a message to computer about current button.
-    Serial.println("FAST BACK");    
+    Serial.println("fast back");    
 
     // Change the color level to red.
     writeRed();
@@ -279,7 +279,7 @@ void pushSwitch(int modeCode) {
   // Create a function for change color blue.
   } else if (modeCode == 4) {
     // Write the button to the users if it is pressed.
-    Serial.println("PAUSE");    
+    Serial.println("pause");    
 
     // Change the color of the level to blue.
     writeBlue();
@@ -290,7 +290,7 @@ void pushSwitch(int modeCode) {
   // Create the mode code for writing green.
   } else if (modeCode == 5) {
     // Write a users message to the serial about the current button.
-    Serial.println("FAST FORWARD");   
+    Serial.println("fast forward");   
 
     // Change the color at this case to green for the button.
     writeGreen();
@@ -301,7 +301,7 @@ void pushSwitch(int modeCode) {
   // Create the mode code for setting function on do not rebound.
   } else if (modeCode == 6) {
     // Alert the users the button has been pressed.
-    Serial.println("DOWN");  
+    Serial.println("down");  
 
     // Do not alert the user upon power down.
     doNotDisturb(false);
@@ -312,7 +312,7 @@ void pushSwitch(int modeCode) {
   // Create the mode code for setting the current power level down.
   } else if (modeCode == 7) {
     // Alert the user the levels of the receiver are changing.
-    Serial.println("VOL-");    
+    Serial.println("vol-");    
 
     // Get the current level within the program
     int currentLevel = moniterPowerLevel();
@@ -327,7 +327,7 @@ void pushSwitch(int modeCode) {
   } else if (modeCode == 8) {
 
     // Alert the users the do not disturb is lifted.
-    Serial.println("UP");    
+    Serial.println("up");    
 
     // When the user lifts the do not disturb allow for notifications.
     doNotDisturb(true);
@@ -338,7 +338,7 @@ void pushSwitch(int modeCode) {
   // Test the beep noise.
   } else if (modeCode == 9) {
     // Alert user this button has been pressed.
-    Serial.println("EQ"); 
+    Serial.println("eq"); 
 
     // Demonstrate the beep function.
     createBEEP();
@@ -346,7 +346,7 @@ void pushSwitch(int modeCode) {
   // Test the function of the invalid beep noise.
   } else if (modeCode == 10) {
     // Alert the user when this button has been pressed.
-    Serial.println("ST/REPT");    
+    Serial.println("st/rept");    
 
     // Create a invalid beep when this button has been pressed.  
     CreateInvalidBEEP();
@@ -490,7 +490,7 @@ void translateIR() // takes action based on IR code received
   {
     //set the current decodedRawData to the last decodedRawData 
     irrecv.decodedIRData.decodedRawData = last_decodedRawData;
-    Serial.println("REPEAT!");
+    Serial.println("repeat!");
   } else
   {
     //output the IR code on the serial monitor
