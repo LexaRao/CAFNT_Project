@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Modeling Common API's for Network Tunneling.slnx"
+    "dotnet.defaultSolution": "CAFNT (Windows).slnx"
 }
